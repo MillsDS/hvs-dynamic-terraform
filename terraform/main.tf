@@ -11,7 +11,7 @@ provider "aws" {
 }
 
 data "external" "env_vars" {
-  program = ["bash", "${path.module}/scripts/read_env_vars.sh"]
+  program = ["bash", "${path.module}/read_env_vars.sh"]
 }
 
 resource "aws_s3_bucket" "hackweek" {
