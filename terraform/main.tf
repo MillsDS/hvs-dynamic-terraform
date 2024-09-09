@@ -10,10 +10,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
-data "aws_caller_identity" "current" {}
+data "external" "env_vars" {
+  program = ["bash", "${path.module}/scripts/read_env_vars.sh"]
+}
 
 resource "aws_s3_bucket" "hackweek" {
-  bucket = "hvs-hackweek-2024"
+  bucket = "hvs-demo-2024"
 }
 
 resource "aws_s3_bucket_cors_configuration" "hackweek" {
@@ -90,7 +92,7 @@ data "template_file" "index" {
 
   vars = {
     deployed_at = timestamp()
-    access_key_id = data.aws_caller_identity.current.account_id
+    access_key_id = data.external.env_vars.result["AWS_ACCESS_KEY_ID"]
   }
 }
 
