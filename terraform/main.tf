@@ -1,8 +1,10 @@
 terraform {
-  backend "s3" {
-    bucket = "hvs-hackweek-2024-statefiles"
-    key    = "hackweek-2024/terraform.tfstate"
-    region = "us-east-1"
+  backend "remote" {
+    hostname     = "app.staging.terraform.io"
+    organization = "hvs-dynamic-secret-demo"
+    workspaces {
+      name = "hvs-demo"
+    }
   }
 }
 
