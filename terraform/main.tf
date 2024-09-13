@@ -145,3 +145,10 @@ output "website_url" {
   value       = aws_s3_bucket_website_configuration.hackweek.website_endpoint
   description = "URL of the static website"
 }
+
+provider "hcp" {}
+
+data "hcp_vault_secrets_dynamic_secret" "example" {
+  app_name    = "core"
+  secret_name = "deploy"
+}
