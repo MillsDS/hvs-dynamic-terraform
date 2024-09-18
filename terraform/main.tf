@@ -17,7 +17,7 @@ data "external" "env_vars" {
 }
 
 resource "aws_s3_bucket" "hackweek" {
-  bucket = "hvs-demo-2024"
+  bucket = "hashiconf-demo-2024"
 }
 
 resource "aws_s3_bucket_cors_configuration" "hackweek" {
@@ -146,9 +146,4 @@ output "website_url" {
   description = "URL of the static website"
 }
 
-provider "hcp" {}
 
-data "hcp_vault_secrets_dynamic_secret" "example" {
-  app_name    = "core"
-  secret_name = "deploy"
-}
